@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "466113806999",
+    "project_id": "todoublevpartners",
+    "storage_bucket": "todoublevpartners.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466113806999:android:77ba92edf5bb83e4a2dfd2",
+        "android_client_info": {
+          "package_name": "com.example.to_double_v_partners"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOwNYIS_BO2ZHLHZyzwWG_3NszaqA-gUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

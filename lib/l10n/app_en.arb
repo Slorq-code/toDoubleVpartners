@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "appTitle": "Double V Partners",
+  "register": "Register",
+  "name": "Name",
+  "email": "Email",
+  "birthDate": "Birth Date",
+  "next": "Next",
+  "back": "Back",
+  "submit": "Submit",
+  "selectDate": "Select date"
+}

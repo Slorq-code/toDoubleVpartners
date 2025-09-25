@@ -1,0 +1,39 @@
+{
+  "@@locale": "es",
+  "appTitle": "Double V Partners",
+  "register": "Registro",
+  "name": "Nombre",
+  "email": "Correo electrónico",
+  "birthDate": "Fecha de nacimiento",
+  "next": "Siguiente",
+  "back": "Atrás",
+  "submit": "Enviar",
+  "selectDate": "Seleccionar fecha",
+  "@appTitle": {
+    "description": "Título de la aplicación"
+  },
+  "@register": {
+    "description": "Título del formulario de registro"
+  },
+  "@name": {
+    "description": "Etiqueta para el campo de nombre"
+  },
+  "@email": {
+    "description": "Etiqueta para el campo de correo electrónico"
+  },
+  "@birthDate": {
+    "description": "Etiqueta para el campo de fecha de nacimiento"
+  },
+  "@next": {
+    "description": "Texto para el botón de siguiente"
+  },
+  "@back": {
+    "description": "Texto para el botón de atrás"
+  },
+  "@submit": {
+    "description": "Texto para el botón de enviar"
+  },
+  "@selectDate": {
+    "description": "Mensaje para seleccionar fecha"
+  }
+}
