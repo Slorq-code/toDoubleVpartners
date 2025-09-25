@@ -54,6 +54,13 @@ class _AddressFormState extends ConsumerState<AddressForm> {
     
     // Initialize with existing address if editing
     _helper.initializeWithAddress(widget.initialAddress);
+    
+    // Si no hay callback de cancelar (contexto de registro), expandir automáticamente
+    if (widget.onCancel == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(addressFormProvider.notifier).updateForm(isExpanded: true);
+      });
+    }
   }
 
   @override
@@ -78,13 +85,17 @@ class _AddressFormState extends ConsumerState<AddressForm> {
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
+        // Siempre mostrar los botones de expandir/contraer
         if (state.isExpanded)
           IconButton(
             icon: const Icon(Icons.close),
             onPressed: () {
+              print('🔄 BOTÓN CERRAR PRESIONADO');
               if (widget.onCancel != null) {
+                print('🔄 EJECUTANDO onCancel');
                 widget.onCancel!();
               } else {
+                print('🔄 EJECUTANDO toggleExpanded');
                 _helper.toggleExpanded();
               }
             },
@@ -93,6 +104,7 @@ class _AddressFormState extends ConsumerState<AddressForm> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
+              print('🔄 BOTÓN AGREGAR PRESIONADO');
               _helper.toggleExpanded();
             },
           ),
@@ -135,9 +147,7 @@ class _AddressFormState extends ConsumerState<AddressForm> {
       
       // Address line 1 (required)
       const SizedBox(height: 16.0),
-      const Text('Dirección principal', 
-        style: TextStyle(fontWeight: FontWeight.bold)),
-      const SizedBox(height: 8.0),
+
       InputText(
         label: 'Dirección principal',
         placeholder: 'Ingresa la dirección principal',
@@ -147,9 +157,6 @@ class _AddressFormState extends ConsumerState<AddressForm> {
       
       // Address line 2 (optional)
       const SizedBox(height: 16.0),
-      const Text('Complemento de dirección',
-        style: TextStyle(fontWeight: FontWeight.bold)),
-      const SizedBox(height: 8.0),
       InputText(
         label: 'Complemento (opcional)',
         placeholder: 'Ej: Apartamento, piso, torre, etc.',
@@ -253,7 +260,7 @@ class _AddressFormState extends ConsumerState<AddressForm> {
         const Text('Departamento', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 8.0),
         DropdownButtonFormField<String>(
-          value: _helper.getValidDropdownValue(state.department, state.departments),
+          initialValue: _helper.getValidDropdownValue(state.department, state.departments),
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -284,7 +291,7 @@ class _AddressFormState extends ConsumerState<AddressForm> {
         const Text('Ciudad', style: TextStyle(fontWeight: FontWeight.bold)),
         const SizedBox(height: 8.0),
         DropdownButtonFormField<String>(
-          value: _helper.getValidDropdownValue(state.city, state.cities),
+          initialValue: _helper.getValidDropdownValue(state.city, state.cities),
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -310,28 +317,21 @@ class _AddressFormState extends ConsumerState<AddressForm> {
   List<Widget> _buildInternationalFields() {
     return [
       const SizedBox(height: 16.0),
-      const Text('País', style: TextStyle(fontWeight: FontWeight.bold)),
-      const SizedBox(height: 8.0),
       InputText(
         label: 'País',
         placeholder: 'Ingresa el país',
         controller: _otherCountryController,
         onTextChanged: (hasText) => _helper.updateCountry(),
       ),
-      
       const SizedBox(height: 16.0),
-      const Text('Departamento/Estado', style: TextStyle(fontWeight: FontWeight.bold)),
-      const SizedBox(height: 8.0),
       InputText(
         label: 'Departamento o estado',
         placeholder: 'Ingresa el departamento o estado',
         controller: _otherDepartmentController,
         onTextChanged: (hasText) => _helper.updateInternationalDepartment(),
       ),
-      
+
       const SizedBox(height: 16.0),
-      const Text('Ciudad', style: TextStyle(fontWeight: FontWeight.bold)),
-      const SizedBox(height: 8.0),
       InputText(
         label: 'Ciudad',
         placeholder: 'Ingresa la ciudad',

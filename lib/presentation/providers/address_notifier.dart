@@ -95,15 +95,6 @@ class AddressFormNotifier extends StateNotifier<AddressFormState> {
       addressLine2: addressLine2 ?? state.addressLine2,
     );
     
-    print('📊 ESTADO DESPUÉS DE ACTUALIZAR:');
-    print('  - País: "${state.country}"');
-    print('  - Departamento: "${state.department}"');
-    print('  - Ciudad: "${state.city}"');
-    print('  - Dirección principal: "${state.addressLine1}"');
-    print('  - Dirección complemento: "${state.addressLine2}"');
-    print('  - Formulario válido: ${state.isFormValid}');
-    print('');
-    
     // Si se actualiza el departamento y estamos en Colombia, cargar las ciudades
     if (department != null && state.isColombia) {
       loadCities(department);
@@ -139,7 +130,9 @@ class AddressFormNotifier extends StateNotifier<AddressFormState> {
 
   // Expandir/contraer el formulario
   void toggleExpanded() {
+    print('🔄 TOGGLE EXPANDED - Estado actual: ${state.isExpanded}');
     state = state.copyWith(isExpanded: !state.isExpanded);
+    print('🔄 TOGGLE EXPANDED - Nuevo estado: ${state.isExpanded}');
   }
 
   // Limpiar el formulario

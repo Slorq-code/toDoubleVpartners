@@ -31,13 +31,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         title: Text('Lista de Usuarios (${usersState.users.length})'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () {
-              ref.read(usersProvider.notifier).refreshUsers();
-            },
-            tooltip: 'Actualizar lista',
-          ),
-          IconButton(
             icon: const Icon(Icons.person_add),
             onPressed: () async {
               print('Agregar usuario');
@@ -140,6 +133,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 color: Colors.grey,
               ),
             ),
+            const SizedBox(height: 8),
+            Text(
+              'En la parte superior derecha',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: Colors.grey,
+              ),
+            ),
           ],
         ),
       );
@@ -204,24 +204,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ],
                   ),
                 ),
-                PopupMenuButton<String>(
-                  onSelected: (value) {
-                    if (value == 'delete') {
-                      _showDeleteConfirmation(context, user);
-                    }
-                  },
-                  itemBuilder: (context) => [
-                    const PopupMenuItem(
-                      value: 'delete',
-                      child: Row(
-                        children: [
-                          Icon(Icons.delete, color: Colors.red),
-                          SizedBox(width: 8),
-                          Text('Eliminar'),
-                        ],
-                      ),
-                    ),
-                  ],
+                IconButton(
+                  icon: const Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                    size: 24,
+                  ),
+                  onPressed: () => _showDeleteConfirmation(context, user),
+                  tooltip: 'Eliminar usuario',
                 ),
               ],
             ),
@@ -264,7 +254,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(12.0),
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.surfaceVariant.withOpacity(0.3),
+                      color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Column(
@@ -286,7 +276,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   ),
                 );
-              }).toList(),
+              }),
             ],
             
             const SizedBox(height: 8.0),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:to_double_v_partners/domain/entities/address_entity.dart';
 import 'package:to_double_v_partners/domain/services/user_service.dart';
-import 'package:to_double_v_partners/presentation/providers/address_provider.dart';
 import 'package:to_double_v_partners/presentation/widgets/address_form.dart';
 import 'package:to_double_v_partners/presentation/widgets/button.dart';
 import 'package:to_double_v_partners/presentation/widgets/input_text.dart';
@@ -232,7 +231,7 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
             child: LinearProgressIndicator(
               value: (_currentStep + 1) / _totalSteps,
               minHeight: 8,
-              backgroundColor: theme.colorScheme.surfaceVariant,
+              backgroundColor: theme.colorScheme.surfaceContainerHighest,
               valueColor: AlwaysStoppedAnimation<Color>(
                 theme.colorScheme.primary,
               ),
@@ -370,7 +369,7 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
           const SizedBox(height: 24.0),
           
           // Lista de direcciones guardadas
-          ..._addresses.map((address) => _buildAddressCard(theme, address)).toList(),
+          ..._addresses.map((address) => _buildAddressCard(theme, address)),
           
           // Formulario de dirección
           AddressForm(
@@ -379,9 +378,7 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
                 _addresses.add(address);
               });
             },
-            onCancel: () {
-              // No es necesario hacer nada al cancelar
-            },
+            // Sin onCancel para permitir que el formulario se contraiga/expanda normalmente
           ),
         ],
       ),
@@ -406,12 +403,6 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
                     'Dirección ${_addresses.indexOf(address) + 1}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.edit, size: 20),
-                  onPressed: () {
-                    // TODO: Implementar edición de dirección
-                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete, size: 20, color: Colors.red),
@@ -528,10 +519,10 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
           Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
-              color: theme.colorScheme.primaryContainer.withOpacity(0.3),
+              color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(
-                color: theme.colorScheme.primary.withOpacity(0.3),
+                color: theme.colorScheme.primary.withValues(alpha: 0.3),
               ),
             ),
             child: Row(
@@ -544,7 +535,7 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
                 const SizedBox(width: 12.0),
                 Expanded(
                   child: Text(
-                    'Al confirmar, se creará tu cuenta con la información proporcionada.',
+                    'Al confirmar, La informacion sera almacenada en firebase.',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.colorScheme.onPrimaryContainer,
                     ),
@@ -654,7 +645,7 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
       margin: const EdgeInsets.only(bottom: 16.0),
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: theme.colorScheme.surfaceVariant.withOpacity(0.3),
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(
           color: theme.dividerColor,
@@ -682,7 +673,7 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
                   decoration: BoxDecoration(
-                    color: Colors.amber.withOpacity(0.2),
+                    color: Colors.amber.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12.0),
                   ),
                   child: Row(
@@ -747,7 +738,7 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
               width: double.infinity,
               child: CustomButton(
                 text: 'Regresar',
-                onPressed: widget.onRemove ?? () {}, // Fixing callback type issue
+                onPressed: _onStepBack,
                 backgroundColor: Colors.transparent,
                 textColor: theme.colorScheme.onSurfaceVariant,
                 borderColor: theme.dividerColor,
@@ -766,4 +757,5 @@ class _RegisterUserScreenState extends ConsumerState<RegisterUserScreen> {
 
 
   }
+
 }

@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
   final double iconSpacing;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     this.onPressed,
     this.enabled = true,
@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
     this.textStyle,
     this.icon,
     this.iconSpacing = 8.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +50,20 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: enabled && !isLoading ? onPressed : null,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-            if (states.contains(MaterialState.disabled)) {
+          backgroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+            if (states.contains(WidgetState.disabled)) {
               return disabledColor ?? Colors.grey.shade200;
             }
             return backgroundColor ?? theme.primaryColor;
           }),
-          foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-            if (states.contains(MaterialState.disabled)) {
+          foregroundColor: WidgetStateProperty.resolveWith<Color>((states) {
+            if (states.contains(WidgetState.disabled)) {
               return Colors.grey.shade500;
             }
             return textColor ?? Colors.white;
           }),
-          side: MaterialStateProperty.resolveWith<BorderSide>((states) {
-            if (states.contains(MaterialState.disabled)) {
+          side: WidgetStateProperty.resolveWith<BorderSide>((states) {
+            if (states.contains(WidgetState.disabled)) {
               return BorderSide(color: Colors.grey.shade300);
             }
             return borderColor != null ? BorderSide(color: borderColor!) : BorderSide.none;

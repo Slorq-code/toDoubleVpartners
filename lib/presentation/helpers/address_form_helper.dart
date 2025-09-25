@@ -105,14 +105,12 @@ class AddressFormHelper {
   void expandForEdit(AddressEntity address) {
     // Primero expandir el formulario
     ref.read(addressFormProvider.notifier).updateForm(isExpanded: true);
-    
     // Luego inicializar con los datos de la dirección
     initializeWithAddress(address);
   }
 
   /// Actualizar campo de dirección principal
   void updateAddressLine1() {
-    print('🏠 ACTUALIZANDO DIRECCIÓN PRINCIPAL: "${addressLine1Controller.text}"');
     ref.read(addressFormProvider.notifier).updateForm(
       addressLine1: addressLine1Controller.text,
     );
@@ -120,7 +118,6 @@ class AddressFormHelper {
 
   /// Actualizar campo de complemento de dirección
   void updateAddressLine2() {
-    print('🏠 ACTUALIZANDO COMPLEMENTO: "${addressLine2Controller.text}"');
     ref.read(addressFormProvider.notifier).updateForm(
       addressLine2: addressLine2Controller.text,
     );

@@ -11,7 +11,7 @@ class ProgressStepper extends StatelessWidget {
   final Color? textColor;
 
   const ProgressStepper({
-    Key? key,
+    super.key,
     required this.currentStep,
     required this.totalSteps,
     this.height = 8.0,
@@ -21,8 +21,7 @@ class ProgressStepper extends StatelessWidget {
     this.progressColor = Colors.blue,
     this.textColor,
   })  : assert(currentStep >= 0 && currentStep < totalSteps,
-            'currentStep must be between 0 and totalSteps - 1'),
-        super(key: key);
+            'currentStep must be between 0 and totalSteps - 1');
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class ProgressStepper extends StatelessWidget {
             Container(
               height: height,
               decoration: BoxDecoration(
-                color: inactiveColor.withOpacity(0.2),
+                color: inactiveColor.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(height / 2),
               ),
             ),
@@ -86,7 +85,7 @@ class ProgressStepper extends StatelessWidget {
       width: indicatorSize,
       height: indicatorSize,
       decoration: BoxDecoration(
-        color: isActive ? activeColor : inactiveColor.withOpacity(0.2),
+        color: isActive ? activeColor : inactiveColor.withValues(alpha: 0.2),
         shape: BoxShape.circle,
         border: Border.all(
           color: isActive ? activeColor : inactiveColor,

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:to_double_v_partners/domain/entities/address_entity.dart';
 
 class Department {
   final int id;

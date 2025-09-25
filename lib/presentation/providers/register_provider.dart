@@ -8,22 +8,26 @@ class RegisterState {
   final UserEntity user;
   final bool isLoading;
   final String? error;
+  final bool hasBirthDate; // Flag para saber si se seleccionó una fecha
 
   RegisterState({
     required this.user,
     this.isLoading = false,
     this.error,
+    this.hasBirthDate = false,
   });
 
   RegisterState copyWith({
     UserEntity? user,
     bool? isLoading,
     String? error,
+    bool? hasBirthDate,
   }) {
     return RegisterState(
       user: user ?? this.user,
       isLoading: isLoading ?? this.isLoading,
       error: error ?? this.error,
+      hasBirthDate: hasBirthDate ?? this.hasBirthDate,
     );
   }
 }
@@ -52,6 +56,7 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
         lastName: lastName ?? state.user.lastName,
         birthDate: birthDate ?? state.user.birthDate,
       ),
+      hasBirthDate: birthDate != null ? true : state.hasBirthDate,
     );
   }
 
@@ -107,7 +112,7 @@ class RegisterNotifier extends StateNotifier<RegisterState> {
   bool validatePersonalInfo() {
     return state.user.firstName.isNotEmpty && 
            state.user.lastName.isNotEmpty && 
-           state.user.birthDate != null;
+           state.hasBirthDate;
   }
 
   bool validateAddresses() {

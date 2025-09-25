@@ -35,16 +35,6 @@ class AddressFormState {
         department?.isNotEmpty == true &&
         city?.isNotEmpty == true &&
         addressLine1?.isNotEmpty == true;
-    
-    print('🔍 VALIDACIÓN FORMULARIO:');
-    print('  - País: "${country}" (válido: ${country?.isNotEmpty == true})');
-    print('  - Departamento: "${department}" (válido: ${department?.isNotEmpty == true})');
-    print('  - Ciudad: "${city}" (válido: ${city?.isNotEmpty == true})');
-    print('  - Dirección principal: "${addressLine1}" (válido: ${addressLine1?.isNotEmpty == true})');
-    print('  - Dirección complemento: "${addressLine2}"');
-    print('  - ✅ FORMULARIO VÁLIDO: $isValid');
-    print('');
-    
     return isValid;
   }
 
