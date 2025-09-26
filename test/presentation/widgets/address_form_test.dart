@@ -204,7 +204,6 @@ void main() {
 
     testWidgets('should handle widget rebuild', (WidgetTester tester) async {
       // Arrange
-      bool firstBuild = true;
       
       // Act - First build with scrollable container
       await tester.pumpWidget(
@@ -214,7 +213,7 @@ void main() {
               body: SingleChildScrollView(
                 child: AddressForm(
                   onSave: (address) {},
-                  key: firstBuild ? const Key('first') : const Key('second'),
+                  key: const Key('first'),
                 ),
               ),
             ),
@@ -226,7 +225,6 @@ void main() {
       expect(find.byType(AddressForm), findsOneWidget);
 
       // Act - Rebuild with different key
-      firstBuild = false;
       await tester.pumpWidget(
         ProviderScope(
           child: MaterialApp(
@@ -234,7 +232,7 @@ void main() {
               body: SingleChildScrollView(
                 child: AddressForm(
                   onSave: (address) {},
-                  key: firstBuild ? const Key('first') : const Key('second'),
+                  key: const Key('second'),
                 ),
               ),
             ),
