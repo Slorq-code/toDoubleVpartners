@@ -994,9 +994,9 @@ String? validateInput(String? value) {
 ## 👨‍💻 Desarrollador
 
 **Andrés Rodríguez**  
-📧 Email: [correo@ejemplo.com]  
-💼 LinkedIn: [linkedin.com/in/perfil]  
-🐙 GitHub: [github.com/usuario]
+📧 Email: [andresfra65@gmail.com]  
+💼 LinkedIn: [linkedin.com/in/and-rod]  
+🐙 GitHub: [github.com/Slorq-code]
 
 ### 🎯 Sobre esta Prueba Técnica
 
@@ -1010,31 +1010,6 @@ Esta aplicación fue desarrollada como prueba técnica para **Double V Partners*
 - ✅ **Código Limpio y Documentado**
 - ✅ **Mejores Prácticas de Desarrollo**
 
-### 📝 Notas de Desarrollo
-
-- **Tiempo de Desarrollo**: ~40 horas
-- **Commits**: +50 commits con mensajes descriptivos
-- **Testing**: Cobertura del 85%+
-- **Documentación**: README completo y comentarios en código
-- **Performance**: Optimizado para producción
-
----
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-## 🙏 Agradecimientos
-
-- **Flutter Team** por el excelente framework
-- **Firebase Team** por los servicios en la nube
-- **Riverpod Community** por la gestión de estado reactiva
-- **Material Design** por las guías de diseño
-- **Double V Partners** por la oportunidad de demostrar habilidades
-
----
 
 <div align="center">
 
